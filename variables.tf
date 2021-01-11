@@ -11,7 +11,8 @@ variable "proxmox_ip" {
 }
 
 variable "name" {
-    type = string
+    description = "Name of the VM in Proxmox"
+    type        = string
 }
 
 variable "target_node" {
@@ -40,7 +41,9 @@ variable "streaming_bridge" {
 }
 
 variable "os_type" {
-    type = string
+    type        = string
+    description = "Which provisioning method to use, based on the OS type. ubuntu | centos | cloud-init"
+    default     = "ubuntu"
 }
 
 variable "vmid" {
@@ -48,6 +51,7 @@ variable "vmid" {
 }
 
 variable "disks" {
+    description = "Always include the DUMMY_DRIVE at the beginning to prevent changing the template's default drive"
     type = list(object({
         size         = string
         storage      = string
