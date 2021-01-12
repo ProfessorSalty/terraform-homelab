@@ -65,3 +65,8 @@ variable "networks" {
     }))
     default = []
 }
+
+variable "ssd" {
+    type    = bool
+    default = false
+}
