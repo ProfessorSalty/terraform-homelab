@@ -7,7 +7,6 @@ terraform {
 }
 
 provider "proxmox" {
-    pm_user         = var.pm_user
     pm_tls_insecure = true
 }
 

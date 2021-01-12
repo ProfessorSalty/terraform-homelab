@@ -1,9 +1,3 @@
-variable "pm_user" {
-  type        = string
-  description = "Username and login source for the Proxmox user Terraform will use (username@source)"
-  default     = "terraform@pve"
-}
-
 variable "name" {
   description = "Name of the VM in Proxmox"
   type        = string
