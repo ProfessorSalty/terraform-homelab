@@ -64,7 +64,3 @@ variable "ssd" {
   type    = bool
   default = false
 }
-
-variable "storage" {
-  type = string
-}
