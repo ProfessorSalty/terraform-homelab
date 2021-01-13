@@ -39,7 +39,7 @@ resource "proxmox_vm_qemu" "proxmox_resource" {
       slot    = disk.key + 1
       size    = disk.value["size"]
       storage = disk.value["storage"]
-      ssd     = lookup(disk.value, "ssd", false)
+      ssd     = lookup(disk.value, "ssd", 0)
       type    = "scsi"
       format  = "qcow2"
     }

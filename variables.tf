@@ -52,7 +52,7 @@ variable "disks" {
   type = list(object({
     size    = string
     storage = string
-    ssd     = optional(bool)
+    ssd     = optional(number)
   }))
   default = []
 }
