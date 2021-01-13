@@ -24,6 +24,7 @@ resource "proxmox_vm_qemu" "proxmox_resource" {
   balloon     = 2048
   onboot      = true
   full_clone  = false
+  boot        = "c"
 
   dynamic "network" {
     for_each = var.networks
