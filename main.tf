@@ -36,7 +36,6 @@ resource "proxmox_vm_qemu" "proxmox_resource" {
   dynamic "disk" {
     for_each = var.disks
     content {
-      slot    = disk.key + 1
       size    = disk.value["size"]
       storage = disk.value["storage"]
       ssd     = lookup(disk.value, "ssd", 0)
