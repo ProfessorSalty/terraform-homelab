@@ -1,3 +1,12 @@
+variable "pm_user_pass" {
+  sensitive = true
+  type      = string
+}
+
+variable "pm_api_url" {
+  type = string
+}
+
 variable "name" {
   description = "Name of the VM in Proxmox"
   type        = string
@@ -43,6 +52,7 @@ variable "disks" {
   type = list(object({
     size    = string
     storage = string
+    ssd     = optional(bool)
   }))
   default = []
 }
