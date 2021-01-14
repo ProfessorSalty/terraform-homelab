@@ -14,6 +14,7 @@ provider "proxmox" {
 }
 
 resource "proxmox_vm_qemu" "proxmox_resource" {
+  define_connection_info = true
   name        = var.name
   target_node = var.target_node
   vmid        = var.vmid
