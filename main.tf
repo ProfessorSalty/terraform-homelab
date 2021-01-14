@@ -15,17 +15,18 @@ provider "proxmox" {
 
 resource "proxmox_vm_qemu" "proxmox_resource" {
   define_connection_info = true
-  name        = var.name
-  target_node = var.target_node
-  vmid        = var.vmid
-  clone       = var.clone_source
-  cores       = var.cores
-  memory      = var.memory
-  os_type     = var.os_type
-  balloon     = 2048
-  onboot      = true
-  full_clone  = false
-  boot        = "c"
+  name                   = var.name
+  target_node            = var.target_node
+  vmid                   = var.vmid
+  clone                  = var.clone_source
+  cores                  = var.cores
+  memory                 = var.memory
+  os_type                = var.os_type
+  balloon                = 2048
+  onboot                 = true
+  full_clone             = false
+  boot                   = "c"
+  agent                  = 1
 
   dynamic "network" {
     for_each = var.networks
