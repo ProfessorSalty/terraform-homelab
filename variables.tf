@@ -73,7 +73,17 @@ variable "hostname" {
   default = ""
 }
 
-variable "user_data" {
+variable "hostname" {
   type    = string
+  default = ""
+}
+
+variable "ssh_user" {
+  type = string
+  default = ""
+}
+
+variable "ssh_password" {
+  type = string
   default = ""
 }
