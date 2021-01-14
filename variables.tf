@@ -48,7 +48,6 @@ variable "vmid" {
 }
 
 variable "disks" {
-  description = "Always include the DUMMY_DRIVE at the beginning to prevent changing the template's default drive"
   type = list(object({
     size    = string
     storage = string
@@ -67,4 +66,9 @@ variable "networks" {
 variable "ssd" {
   type    = bool
   default = false
+}
+
+variable "hostname" {
+  type    = string
+  default = ""
 }
