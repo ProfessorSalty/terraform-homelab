@@ -45,15 +45,14 @@ resource "proxmox_vm_qemu" "proxmox_resource" {
     }
   }
 
-  provisioner "remote-exec" {
-    inline = var.hostname == "" ? [""] : ["sudo hostnamectl set-hostname ${var.hostname}"] 
-
-    connection {
-      type     = "ssh"
-      host     = "${self.ssh_host}"
-      user     = "${var.ssh_user}"
-      password = "${var.ssh_password}"
-    }
+  connection {
+    type     = "ssh"
+    host     = self.ssh_host
+    user     = var.ssh_user
+    password = var.ssh_password
   }
 
+  provisioner "remote-exec" {
+    inline = var.hostname == "" ? [""] : ["sudo hostnamectl set-hostname ${var.hostname}"]
+  }
 }
