@@ -49,7 +49,6 @@ resource "proxmox_vm_qemu" "proxmox_resource" {
 
   connection {
     type     = "ssh"
-    host     = self.ssh_host
     user     = var.ssh_user
     password = var.ssh_password
   }
