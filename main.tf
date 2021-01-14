@@ -13,13 +13,6 @@ provider "proxmox" {
   pm_api_url      = var.pm_api_url
 }
 
-data "template_file" "user_data" {
-  template = file("${path.module}/user_data.yml")
-  vars = {
-    "hostname" = var.hostname
-  }
-}
-
 resource "proxmox_vm_qemu" "proxmox_resource" {
   name        = var.name
   target_node = var.target_node
@@ -33,7 +26,7 @@ resource "proxmox_vm_qemu" "proxmox_resource" {
   full_clone  = false
   boot        = "c"
 
-  user_data = data.template_file.user_data.rendered
+  user_data = var.user_data
 
   dynamic "network" {
     for_each = var.networks

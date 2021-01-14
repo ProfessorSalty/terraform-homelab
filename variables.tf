@@ -72,3 +72,8 @@ variable "hostname" {
   type    = string
   default = ""
 }
+
+variable "user_data" {
+  type    = string
+  default = ""
+}
