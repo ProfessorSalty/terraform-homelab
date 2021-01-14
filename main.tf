@@ -26,8 +26,6 @@ resource "proxmox_vm_qemu" "proxmox_resource" {
   full_clone  = false
   boot        = "c"
 
-  user_data = var.user_data
-
   dynamic "network" {
     for_each = var.networks
     content {

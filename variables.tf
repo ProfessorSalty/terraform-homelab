@@ -73,11 +73,6 @@ variable "hostname" {
   default = ""
 }
 
-variable "hostname" {
-  type    = string
-  default = ""
-}
-
 variable "ssh_user" {
   type = string
   default = ""
@@ -86,4 +81,5 @@ variable "ssh_user" {
 variable "ssh_password" {
   type = string
   default = ""
+  sensitive = true
 }
