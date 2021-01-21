@@ -52,6 +52,7 @@ variable "disks" {
     size    = string
     storage = string
     ssd     = optional(number)
+    format  = optional(string)
   }))
   default = []
 }
@@ -78,7 +79,7 @@ variable "ssh_user" {
   default = ""
 }
 
-variable "ssh_password" {
+variable "sudo_password" {
   type = string
   default = ""
   sensitive = true

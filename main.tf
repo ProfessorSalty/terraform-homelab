@@ -14,7 +14,6 @@ provider "proxmox" {
 }
 
 resource "proxmox_vm_qemu" "proxmox_resource" {
-  define_connection_info = true
   name                   = var.name
   target_node            = var.target_node
   vmid                   = var.vmid
@@ -41,19 +40,18 @@ resource "proxmox_vm_qemu" "proxmox_resource" {
     content {
       size    = disk.value["size"]
       storage = disk.value["storage"]
+      format  = lookup(disk.value, "format", "qcow2")
       ssd     = lookup(disk.value, "ssd", 0)
       type    = "scsi"
-      format  = "qcow2"
     }
   }
+}
 
-  connection {
-    type     = "ssh"
-    user     = var.ssh_user
-    password = var.ssh_password
-  }
+resource "null_resource" "wait_for_reboot" {
+  depends_on = [proxmox_vm_qemu.proxmox_resource]
 
-  provisioner "remote-exec" {
-    inline = var.hostname == "" ? [""] : ["sudo hostnamectl set-hostname ${var.hostname}"]
+  provisioner "local-exec" {
+    command     = "${path.module}/wait_port ${proxmox_vm_qemu.proxmox_resource.ssh_host} ${proxmox_vm_qemu.proxmox_resource.ssh_port}"
+    working_dir = path.module
   }
 }
