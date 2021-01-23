@@ -52,6 +52,5 @@ resource "null_resource" "wait_for_reboot" {
 
   provisioner "local-exec" {
     command     = "${path.module}/wait_port ${proxmox_vm_qemu.proxmox_resource.ssh_host} ${proxmox_vm_qemu.proxmox_resource.ssh_port}"
-    working_dir = path.module
   }
 }
