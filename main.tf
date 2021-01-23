@@ -46,11 +46,3 @@ resource "proxmox_vm_qemu" "proxmox_resource" {
     }
   }
 }
-
-resource "null_resource" "wait_for_reboot" {
-  depends_on = [proxmox_vm_qemu.proxmox_resource]
-
-  provisioner "local-exec" {
-    command     = "${path.module}/wait_port ${proxmox_vm_qemu.proxmox_resource.ssh_host} ${proxmox_vm_qemu.proxmox_resource.ssh_port}"
-  }
-}
