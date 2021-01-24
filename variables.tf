@@ -84,3 +84,12 @@ variable "sudo_password" {
   default = ""
   sensitive = true
 }
+
+variable "vm_playbook_dir" {
+  type = string
+}
+
+variable "playbook_filename" {
+  type = string
+  default = "playbook.yml"
+}
