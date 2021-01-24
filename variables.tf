@@ -87,6 +87,7 @@ variable "sudo_password" {
 
 variable "vm_playbook_dir" {
   type = string
+  default = ""
 }
 
 variable "playbook_filename" {
