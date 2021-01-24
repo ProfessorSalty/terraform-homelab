@@ -50,7 +50,7 @@ resource "proxmox_vm_qemu" "proxmox_resource" {
 }
 
 resource "null_resource" "wait_for_reboot" {
-  count = var.vm_playbook_dir ? 1 : 0
+  count = var.vm_playbook_dir == "" ? 0 : 1
   depends_on = [proxmox_vm_qemu.proxmox_resource]
 
   provisioner "local-exec" {
@@ -59,7 +59,7 @@ resource "null_resource" "wait_for_reboot" {
 }
 
 resource "null_resource" "run_ansible_setup" {
-  count = var.vm_playbook_dir ? 1 : 0
+  count = var.vm_playbook_dir == "" ? 0 : 1
   depends_on = [null_resource.wait_for_reboot]
 
   provisioner "local-exec" {
