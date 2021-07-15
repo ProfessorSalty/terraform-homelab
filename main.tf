@@ -48,21 +48,3 @@ resource "proxmox_vm_qemu" "proxmox_resource" {
     }
   }
 }
-
-resource "null_resource" "wait_for_reboot" {
-  count = var.vm_playbook_dir == "" ? 0 : 1
-  depends_on = [proxmox_vm_qemu.proxmox_resource]
-
-  provisioner "local-exec" {
-    command     = "${path.module}/wait_port ${proxmox_vm_qemu.proxmox_resource.ssh_host} ${proxmox_vm_qemu.proxmox_resource.ssh_port}"
-  }
-}
-
-resource "null_resource" "run_ansible_setup" {
-  count = var.vm_playbook_dir == "" ? 0 : 1
-  depends_on = [null_resource.wait_for_reboot]
-
-  provisioner "local-exec" {
-    command = "ansible-playbook -i ${proxmox_vm_qemu.proxmox_resource.ssh_host}, ${var.vm_playbook_dir}/${var.name}/${var.playbook_filename}}"
-  }
-}

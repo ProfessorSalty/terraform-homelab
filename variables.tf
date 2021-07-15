@@ -39,7 +39,7 @@ variable "streaming_bridge" {
 
 variable "os_type" {
   type        = string
-  description = "Which provisioning method to use, based on the OS type. ubuntu | centos | cloud-init"
+  description = "Which provisioning method to use, based on the OS type. ubuntu (Default) | centos | cloud-init"
   default     = "ubuntu"
 }
 
@@ -72,25 +72,4 @@ variable "ssd" {
 variable "hostname" {
   type    = string
   default = ""
-}
-
-variable "ssh_user" {
-  type = string
-  default = ""
-}
-
-variable "sudo_password" {
-  type = string
-  default = ""
-  sensitive = true
-}
-
-variable "vm_playbook_dir" {
-  type = string
-  default = ""
-}
-
-variable "playbook_filename" {
-  type = string
-  default = "playbook.yml"
 }
