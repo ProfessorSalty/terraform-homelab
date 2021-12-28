@@ -7,6 +7,14 @@ variable "pm_api_url" {
   type = string
 }
 
+variable "pm_user" {
+  type = string
+  validation {
+    condition = can(regex("@(pam|pve)$", var.pm_user))
+    error_message = "Please enter the full username with the authentication domain (@pve, @pam, etc.)."
+  }
+}
+
 variable "name" {
   description = "Name of the VM in Proxmox"
   type        = string
