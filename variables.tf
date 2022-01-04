@@ -1,16 +1,19 @@
-variable "pm_user_pass" {
+variable "proxmox_token" {
   sensitive = true
-  type      = string
+  type      = object({
+    id = string
+    secret = string
+  })
 }
 
-variable "pm_api_url" {
+variable "proxmox_host" {
   type = string
 }
 
-variable "pm_user" {
+variable "proxmox_user" {
   type = string
   validation {
-    condition = can(regex("@(pam|pve)$", var.pm_user))
+    condition = can(regex("@(pam|pve)$", var.proxmox_user))
     error_message = "Please enter the full username with the authentication domain (@pve, @pam, etc.)."
   }
 }
